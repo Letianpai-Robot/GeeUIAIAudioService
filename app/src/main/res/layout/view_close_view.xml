@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black_light"
+    >
+
+    <TextView
+        android:id="@+id/tvDisable"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textSize="38sp"
+        android:background="@drawable/text_item_bg"
+        android:gravity="center"
+        android:layout_centerInParent="true"
+        android:lineSpacingMultiplier="1"
+        android:paddingTop="60dp"
+        android:paddingBottom="60dp"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
+        android:text="@string/voice_wake_closed">
+    </TextView>
+    
+    <ImageView
+        android:layout_width="100px"
+        android:layout_height="100px"
+        android:src="@drawable/disable"
+        android:layout_below="@id/tvDisable"
+        android:layout_centerHorizontal="true"></ImageView>
+
+</RelativeLayout>

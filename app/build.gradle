@@ -1,0 +1,97 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'kotlin-parcelize'
+    id 'kotlin-platform-android'
+}
+
+android {
+    namespace 'com.rhj.speech'
+    compileSdk 33
+
+    defaultConfig {
+        applicationId "com.rhj.speech"
+        minSdk 26
+        targetSdk 32
+        versionCode 202410091
+
+        versionName "1.1." + versionCode
+        viewBinding {
+            enabled = true
+        }
+        ndk {
+            abiFilters 'arm64-v8a'
+        }
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    signingConfigs {
+        config {
+            storeFile file('../keystore/letianpai.jks')
+            keyAlias 'letianpai'
+            keyPassword 'letianpai0801'
+            storePassword 'letianpai0801'
+        }
+    }
+
+
+    buildTypes {
+        debug {
+            signingConfig signingConfigs.config
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        release {
+            signingConfig signingConfigs.config
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    //流式网络请求
+    implementation 'com.squareup.okhttp3:okhttp-sse:4.10.0'
+//    implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
+    implementation 'androidx.appcompat:appcompat:1.4.1'
+    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
+
+    implementation 'tv.danmaku.ijk.media:ijkplayer-java:0.8.8'
+    implementation 'tv.danmaku.ijk.media:ijkplayer-arm64:0.8.8'
+    implementation 'tv.danmaku.ijk.media:ijkplayer-x86_64:0.8.8'
+    implementation 'tv.danmaku.ijk.media:ijkplayer-exo:0.8.8'
+
+    implementation 'com.google.android.exoplayer:exoplayer-core:2.17.1'
+    implementation 'com.google.android.exoplayer:exoplayer-ui:2.17.1'
+
+    def room_version = "2.5.0"
+    implementation("androidx.room:room-runtime:$room_version")
+//    annotationProcessor("androidx.room:room-compiler:$room_version")
+    // To use Kotlin annotation processing tool (kapt)
+    kapt("androidx.room:room-compiler:$room_version")
+    // To use Kotlin Symbol Processing (KSP)
+//    ksp("androidx.room:room-compiler:$room_version")
+    def work_version = "2.8.0"
+
+    // (Java only)
+    implementation "androidx.work:work-runtime:$work_version"
+    // Kotlin + coroutines
+    implementation "androidx.work:work-runtime-ktx:$work_version"
+
+    // optional - Kotlin Extensions and Coroutines support for Room
+    implementation("androidx.room:room-ktx:$room_version")
+    api project(path: ':audio')
+    api project(path: ':CommandLib')
+    api project(path: ':player')
+    kapt "com.squareup.moshi:moshi-kotlin-codegen:1.14.0"
+    implementation project(path: ':message')
+//    implementation project(path: ':aiui')
+    implementation project(path: ':LtpNetWork')
+    implementation project(path: ':CommChannel')
+    implementation project(path: ':Components')
+}

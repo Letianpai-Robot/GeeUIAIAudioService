@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">AiAudio</string>
+<!--    <string name="voice_wake_closed">The voice wake is currently turned off Please turn on the voice wake first</string>-->
+    <string name="voice_wake_closed">当前语音功能已关闭\n请先打开语音功能</string>
+</resources>

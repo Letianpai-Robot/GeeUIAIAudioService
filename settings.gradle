@@ -1,0 +1,39 @@
+pluginManagement {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        jcenter()
+        flatDir {
+            dirs 'libs'
+        }
+    }
+}
+rootProject.name = "speech"
+include ':app'
+include ':message'
+include ':FmodSound'
+include ':audio'
+include ':player'
+include ':libaar'
+include ':CommandLib'
+include ':library'
+include ':GestureFactory'
+project(':CommandLib').projectDir = new File('GeeUIBase/CommandLib')
+project(':library').projectDir = new File('GeeUIBase/library')
+project(':GestureFactory').projectDir = new File('GeeUIBase/GestureFactory')
+include ':LtpNetWork'
+project(':LtpNetWork').projectDir = new File('LtpNetWork/app')
+include ':aiui'
+
+include ':CommChannel'
+include ':Components'
+project(':CommChannel').projectDir = new File('GeeUIComponents/CommChannel')
+project(':Components').projectDir = new File('GeeUIComponents/Components')
